@@ -1,0 +1,14 @@
+t = -5:0.01:5;
+u = @(t)double(t>=0);
+r = @(t)t.*double(t>=0);
+e = @(t)exp(t);
+rect = @(t)double(abs(t) <= 0.5);
+tri = @(t)max(1 - abs(t),0);
+f = input('Enter the function y(t)= ','s');
+y = eval(f);
+figure;
+plot(t,y,'LineWidth',2);
+grid on;
+xlabel('time');
+ylabel('y');
+axis([-5 5 -5 6]);
