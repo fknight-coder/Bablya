@@ -1,0 +1,21 @@
+x = input("Enter x(n):");
+h = input("Enter h(n)");
+L = length(x);
+M = length(h);
+N = 5;
+K = N + M - 1;
+y = zeros(1,L + M - 1);
+for i = 1:N:L
+    block = x(i:min(i+N-1,L));
+    temp = conv(block,h);
+    y(i:i+length(temp)-1)=...
+        y(i:i+length(temp)-1) + temp;
+end
+disp('Output using overlap add method');
+disp(y);
+stem(0:length(y)-1,y,"filled");
+xlabel('n');
+ylabel('y(n)');
+grid on;
+      
+   
