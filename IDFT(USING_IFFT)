@@ -1,0 +1,16 @@
+X = input("Enter x(n)");
+x = ifft(X);
+disp('IDFT X(n)');
+disp(x);
+
+k = 0:N-1;
+figure;
+
+subplot (2,1,1);
+stem(0:length(x)-1,real(x),'LineWidth',1.5);
+title('input signal');
+grid on; 
+subplot (2,1,2);
+stem(0:length(x)-1,abs(x),'LineWidth',1.5);
+title('Magnitude');
+grid on;
