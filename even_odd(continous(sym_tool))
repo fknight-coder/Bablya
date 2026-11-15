@@ -1,0 +1,34 @@
+syms t
+x = input('Enter x(t): ','s');
+x = str2sym(x);
+x_neg = subs(x,t,-t);
+x_even = simplify((x + x_neg)/2);
+x_odd = simplify((x - x_neg)/2);
+fprintf("\nEven Component:\n");
+disp(x_even);
+fprintf("\nOdd Component:\n");
+disp(x_odd);
+f = matlabFunction(x);
+f_even = matlabFunction(x_even);
+f_odd = matlabFunction(x_odd);
+T = -2:0.01:2;
+figure;
+subplot(3,1,1);
+plot(T, f(T), 'LineWidth', 1.2);
+grid on;
+title('Original Signal');
+xlabel('t');
+ylabel('x(t)');
+subplot(3,1,2);
+plot(T, f_even(T), 'LineWidth', 1.2);
+grid on;
+title('even Signal');
+xlabel('t');
+ylabel('x(t)');
+subplot(3,1,3);
+plot(T, f_odd(T), 'LineWidth', 1.2);
+grid on;
+title('Odd Signal');
+xlabel('t');
+ylabel('x(t)');
+
