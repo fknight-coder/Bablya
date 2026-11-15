@@ -1,0 +1,32 @@
+clc; clear; close all;
+
+x1 = input('Enter x1 (e.g. [1 2 3 4]): ');
+x2 = input('Enter x2 (e.g. [1 1 1]): ');
+
+%% Zero padding to a common length N
+N  = max(length(x1), length(x2));    % N-point circular convolution
+x1p = [x1 zeros(1, N - length(x1))]; % pad x1 with zeros
+x2p = [x2 zeros(1, N - length(x2))]; % pad x2 with zeros
+
+n = 0:N-1;
+
+%% Circular convolution
+y = cconv(x1p, x2p, N);              % N-point circular convolution
+
+disp('Zero-padded x1:');  disp(x1p);
+disp('Zero-padded x2:');  disp(x2p);
+disp('Circular convolution:'); disp(y);
+
+%% Plots
+figure;
+subplot(3,1,1);
+stem(n, x1p, 'LineWidth', 2); grid on;
+title('x_1[n] (zero padded)'); xlabel('n'); ylabel('Amplitude');
+
+subplot(3,1,2);
+stem(n, x2p, 'LineWidth', 2); grid on;
+title('x_2[n] (zero padded)'); xlabel('n'); ylabel('Amplitude');
+
+subplot(3,1,3);
+stem(n, y, 'LineWidth', 2); grid on;
+title('Circular convolution y[n]'); xlabel('n'); ylabel('Amplitude');
